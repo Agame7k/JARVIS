@@ -34,5 +34,6 @@ def upload_sketch(port, fqbn, compiled_hex):
         sys.exit(1)
     print("Upload successful")
 if __name__ == "__main__":
+    ino_file = "/home/jarvis/JARVIS/JARVIS.ino"  # replace with your .ino file path
     compiled_hex = compile_sketch(ino_file)
     upload_sketch(port, fqbn, compiled_hex)
