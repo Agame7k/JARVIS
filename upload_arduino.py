@@ -19,6 +19,9 @@ def compile_sketch(ino_file):
         sys.exit(1)
     print("Compilation successful")
     print(result.stdout)  # Print the output of the compilation process
+    # Assuming the compiled hex file is in the same directory as the .ino file
+    compiled_hex = os.path.splitext(ino_file)[0] + '.hex'
+    return compiled_hex
 
 def upload_sketch(port, fqbn, compiled_hex):
     if not all([arduino_cli, port, fqbn, compiled_hex]):
