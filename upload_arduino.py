@@ -3,7 +3,7 @@ import subprocess
 import sys
 
 # Define paths and filenames
-ino_file = "path/to/your/sketch.ino"
+ino_file = "JarArdu.ino"
 arduino_cli = "/home/pi/bin/arduino-cli"  # Adjust if arduino-cli is in a different directory
 fqbn = "arduino:avr:uno"
 port = "/dev/ttyUSB0"  # Adjust according to your setup, typically /dev/ttyUSB0 or /dev/ttyACM0
