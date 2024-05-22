@@ -21,6 +21,9 @@ def compile_sketch(ino_file):
     print(result.stdout)  # Print the output of the compilation process
 
 def upload_sketch(port, fqbn, compiled_hex):
+    if not all([arduino_cli, port, fqbn, compiled_hex]):
+        print("One or more required variables are None")
+        sys.exit(1)
     upload_command = [
         arduino_cli, "upload", "-p", port, "--fqbn", fqbn, compiled_hex
     ]
@@ -30,7 +33,6 @@ def upload_sketch(port, fqbn, compiled_hex):
         print(result.stderr)
         sys.exit(1)
     print("Upload successful")
-
 if __name__ == "__main__":
     compiled_hex = compile_sketch(ino_file)
     upload_sketch(port, fqbn, compiled_hex)
