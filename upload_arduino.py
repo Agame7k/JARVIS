@@ -19,6 +19,9 @@ def compile_sketch(ino_file):
         sys.exit(1)
     print("Compilation successful")
     print(result.stdout)  # Print the output of the compilation process
+    sys.exit(1)
+    print("Compilation successful")
+    print(result.stdout)  # Print the output of the compilation process
 
 def upload_sketch(ino_file):
     # Get the directory of the .ino file
