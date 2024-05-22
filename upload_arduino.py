@@ -20,20 +20,9 @@ def compile_sketch(ino_file):
     print("Compilation successful")
     print(result.stdout)  # Print the output of the compilation process
 
-def upload_sketch(ino_file):
-    # Get the directory of the .ino file
-    ino_dir = os.path.dirname(ino_file)
-    # Find the .hex file in the build directory
-    hex_file = os.path.join(ino_dir, "build", fqbn.replace(":", "/"), os.path.splitext(os.path.basename(ino_file))[0] + ".ino.hex")
-
-    print(f"Expected hex file location: {hex_file}")  # Print the expected hex file location
-
-    if not os.path.exists(hex_file):
-        print(f"Hex file not found: {hex_file}")
-        sys.exit(1)
-
+def upload_sketch(port, fqbn, compiled_hex):
     upload_command = [
-        "avrdude", "-v", "-patmega328p", "-carduino", f"-P{port}", "-b115200", "-D", f"-Uflash:w:{hex_file}:i"
+        arduino_cli, "upload", "-p", port, "--fqbn", fqbn, compiled_hex
     ]
     result = subprocess.run(upload_command, capture_output=True, text=True)
     if result.returncode != 0:
