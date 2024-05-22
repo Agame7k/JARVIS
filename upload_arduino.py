@@ -6,7 +6,7 @@ import sys
 ino_file = "/home/jarvis/JARVIS/JARVIS.ino"  # Corrected path to the .ino file
 arduino_cli = "/home/jarvis/bin/arduino-cli"  # Correct path to arduino-cli
 fqbn = "arduino:avr:uno"
-port = "/dev/ttyUSB0"  # Adjust according to your setup, typically /dev/ttyUSB0 or /dev/ttyACM0
+port = "/dev/ttyACM0"  # Adjust according to your setup, typically /dev/ttyUSB0 or /dev/ttyACM0
 
 def compile_sketch(ino_file):
     compile_command = [
