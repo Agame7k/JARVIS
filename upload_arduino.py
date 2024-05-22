@@ -32,5 +32,5 @@ def upload_sketch(port, fqbn, compiled_hex):
     print("Upload successful")
 
 if __name__ == "__main__":
-    compile_sketch(ino_file)
-    upload_sketch(ino_file)
+    compiled_hex = compile_sketch(ino_file)
+    upload_sketch(port, fqbn, compiled_hex)
