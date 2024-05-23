@@ -12,7 +12,7 @@ def compile_sketch(ino_file):
     # Assuming the compiled hex file is in the same directory as the .ino file
     compiled_hex = os.path.splitext(ino_file)[0] + '.hex'
     compile_command = [
-        arduino_cli, "compile", "--fqbn", fqbn, "--output-dir", os.path.dirname(compiled_hex), ino_file
+        arduino_cli, "compile", "--fqbn", fqbn, "--output-dir", os.path.dirname(ino_file), ino_file
     ]
     result = subprocess.run(compile_command, capture_output=True, text=True)
     if result.returncode != 0:
@@ -36,7 +36,7 @@ def upload_sketch(port, fqbn, hex_file_path):
         print(result.stderr)
         sys.exit(1)
     print("Upload successful")
+
 if __name__ == "__main__":
-    ino_file = "/home/jarvis/JARVIS/JARVIS.ino"  # replace with your .ino file path
     compiled_hex = compile_sketch(ino_file)
     upload_sketch(port, fqbn, compiled_hex)
