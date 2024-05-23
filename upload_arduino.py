@@ -23,12 +23,12 @@ def compile_sketch(ino_file):
     print(result.stdout)  # Print the output of the compilation process
     return compiled_hex
 
-def upload_sketch(port, fqbn, compiled_hex):
-    if not all([arduino_cli, port, fqbn, compiled_hex]):
+def upload_sketch(port, fqbn, hex_file_path):
+    if not all([arduino_cli, port, fqbn, hex_file_path]):
         print("One or more required variables are None")
         sys.exit(1)
     upload_command = [
-        arduino_cli, "upload", "-p", port, "--fqbn", fqbn, compiled_hex
+        arduino_cli, "upload", "-p", port, "--fqbn", fqbn, hex_file_path
     ]
     result = subprocess.run(upload_command, capture_output=True, text=True)
     if result.returncode != 0:
