@@ -9,8 +9,10 @@ fqbn = "arduino:avr:uno"
 port = "/dev/ttyACM0"  # Adjust according to your setup, typically /dev/ttyUSB0 or /dev/ttyACM0
 
 def compile_sketch(ino_file):
+    # Assuming the compiled hex file is in the same directory as the .ino file
+    compiled_hex = os.path.splitext(ino_file)[0] + '.hex'
     compile_command = [
-        arduino_cli, "compile", "--fqbn", fqbn, ino_file
+        arduino_cli, "compile", "--fqbn", fqbn, "--output-dir", os.path.dirname(compiled_hex), ino_file
     ]
     result = subprocess.run(compile_command, capture_output=True, text=True)
     if result.returncode != 0:
@@ -19,8 +21,6 @@ def compile_sketch(ino_file):
         sys.exit(1)
     print("Compilation successful")
     print(result.stdout)  # Print the output of the compilation process
-    # Assuming the compiled hex file is in the same directory as the .ino file
-    compiled_hex = os.path.splitext(ino_file)[0] + '.hex'
     return compiled_hex
 
 def upload_sketch(port, fqbn, compiled_hex):
