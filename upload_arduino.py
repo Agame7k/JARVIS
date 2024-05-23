@@ -10,7 +10,7 @@ port = "/dev/ttyACM0"  # Adjust according to your setup, typically /dev/ttyUSB0 
 
 def compile_sketch(ino_file):
     # Assuming the compiled hex file is in the same directory as the .ino file
-    compiled_hex = os.path.splitext(ino_file)[0] + '.hex'
+    compiled_hex = os.path.splitext(ino_file)[0] + '.ino.hex'
     compile_command = [
         arduino_cli, "compile", "--fqbn", fqbn, "--output-dir", os.path.dirname(ino_file), ino_file
     ]
