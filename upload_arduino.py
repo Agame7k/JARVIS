@@ -19,7 +19,7 @@ def compile_and_upload_arduino(file_path):
         'avrdude',
         '-p', 'atmega328p',  # Adjust according to your Arduino model
         '-c', 'arduino',
-        '-P', '/dev/ttyS0',  # Adjusted to your setup
+        '-P', '/dev/serial0',  # Adjusted to your setup
         '-b', '115200',  # Adjust according to your Arduino model
         '-U', f'flash:w:{hex_file_path}:i'
     ]
