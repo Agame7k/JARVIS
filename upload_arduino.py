@@ -6,7 +6,7 @@ def compile_and_upload_arduino(file_path):
     compile_command = [
         'arduino-cli',
         'compile',
-        '--fqbn', 'arduino:avr:uno',  # Adjust according to your Arduino model
+        '--fqbn', 'arduino:avr:uno',  # Correct for Arduino Uno R3
         file_path
     ]
     subprocess.run(compile_command, check=True)
@@ -17,10 +17,10 @@ def compile_and_upload_arduino(file_path):
     # Upload the .hex file to the Arduino
     upload_command = [
         'avrdude',
-        '-p', 'atmega328p',  # Adjust according to your Arduino model
+        '-p', 'atmega328p',  # Correct for Arduino Uno R3
         '-c', 'arduino',
-        '-P', '/dev/ttyAMA0',  # Adjusted to your setup
-        '-b', '115200',  # Adjust according to your Arduino model
+        '-P', '/dev/ttyAMA0',  # Adjust to your setup
+        '-b', '115200',  # Correct for Arduino Uno R3
         '-U', f'flash:w:{hex_file_path}:i'
     ]
     subprocess.run(upload_command, check=True)
